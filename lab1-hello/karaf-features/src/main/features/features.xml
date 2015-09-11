@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name='lab1-hello-${project.version}'>
+
+  <feature name='lab1-hello' version='${project.version}' resolver='(obr)'>
+    <bundle>mvn:${project.groupId}/hello-api/${project.version}</bundle>
+
+    <bundle>mvn:${project.groupId}/hello-en/${project.version}</bundle>
+
+    <bundle>mvn:${project.groupId}/hello-client/${project.version}</bundle>
+  </feature>
+
+</features>

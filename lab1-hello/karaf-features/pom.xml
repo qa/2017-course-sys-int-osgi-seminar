@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>lab1-hello</artifactId>
+    <groupId>com.redhat.brq.integration.osgi</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>karaf-features</artifactId>
+
+  <properties>
+    <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
+    <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+  </properties>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <!-- copy features.xml from sources to target and filter them -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven.resources.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>copy-features</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/features</outputDirectory>
+              <resources>
+                <resource>
+                  <!-- need to use maven property placeholders in features.xml -->
+                  <directory>src/main/features</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <!-- tell maven to deploy also features.xml -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${build.helper.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>target/features/features.xml</file>
+                  <type>xml</type>
+                  <classifier>features</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>
