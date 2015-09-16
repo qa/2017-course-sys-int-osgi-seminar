@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+                        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <osgi:reference id="loggingServiceRef" interface="org.osgi.service.log.LogService"/>
+
+    <bean id="frGreetingImpl" class="com.redhat.brq.integration.osgi.hello.impl.fr.FrGreetingImpl">
+        <property name="loggingService" ref="loggingServiceRef"/>
+    </bean>
+
+    <osgi:service interface="com.redhat.brq.integration.osgi.hello.api.Greeting" ref="frGreetingImpl" ranking="2">
+        <osgi:service-properties>
+            <entry key="lang" value="FR"/>
+        </osgi:service-properties>
+    </osgi:service>
+</beans>
