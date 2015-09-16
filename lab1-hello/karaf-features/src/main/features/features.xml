@@ -5,6 +5,7 @@
     <bundle>mvn:${project.groupId}/hello-api/${project.version}</bundle>
 
     <bundle>mvn:${project.groupId}/hello-en/${project.version}</bundle>
+    <bundle>mvn:${project.groupId}/hello-de/${project.version}</bundle>
 
     <bundle>mvn:${project.groupId}/hello-client/${project.version}</bundle>
   </feature>
