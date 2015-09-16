@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <reference id="loggingServiceRef" interface="org.osgi.service.log.LogService"/>
+
+    <bean id="deGreetingImpl" class="com.redhat.brq.integration.osgi.hello.impl.de.DeGreetingImpl">
+        <property name="loggingService" ref="loggingServiceRef"/>
+    </bean>
+
+    <service interface="com.redhat.brq.integration.osgi.hello.api.Greeting" ref="deGreetingImpl" ranking="1">
+        <service-properties>
+            <entry key="lang" value="DE"/>
+        </service-properties>
+    </service>
+
+</blueprint>
