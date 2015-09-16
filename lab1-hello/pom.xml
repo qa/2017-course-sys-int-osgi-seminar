@@ -18,6 +18,7 @@
         <module>hello-client</module>
         <module>hello-en</module>
         <module>hello-de</module>
+        <module>hello-fr</module>
         <module>karaf-features</module>
     </modules>
 </project>
